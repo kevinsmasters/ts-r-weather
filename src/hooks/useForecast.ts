@@ -28,7 +28,7 @@ const useForecast = () => {
 
     const getForecast = (city: optionType) => {
         fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${process.env.REACT_APP_API_KEY}`
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
         )
             .then((res) => res.json())
             .then((data) => {
