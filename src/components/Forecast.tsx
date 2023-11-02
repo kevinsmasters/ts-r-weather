@@ -19,6 +19,29 @@ const Forecast = ({ data }: Props): JSX.Element => {
           <h1 className="text-4xl font-extrabold">
             <Degree temp={Math.round(today.main.temp)} />
           </h1>
+          <p className="text-sm">
+            {today.weather[0].main} {today.weather[0].description}
+          </p>
+          <p>
+            H: <Degree temp={Math.ceil(today.main.temp_max)} /> L:{' '}
+            <Degree temp={Math.floor(today.main.temp_min)} />
+          </p>
+        </section>
+        <section>
+          {data.list.map((item, i) => (
+            <div
+              key={i}
+              className="inline-block text-center w-[50px] flex-shrink-0"
+            >
+              <p>
+                {item.dt}
+                <img
+                  alt={`weather-icon-${item.weather[0].description}`}
+                  src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                />
+              </p>
+            </div>
+          ))}
         </section>
       </div>
     </div>
