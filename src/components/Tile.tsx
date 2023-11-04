@@ -6,7 +6,7 @@ import Pressure from './Icons/Pressure'
 import Pop from './Icons/Pop'
 
 type Props = {
-  icon: 'wind' | 'feels' | 'humidity' | 'pressure' | 'pop'
+  icon: 'wind' | 'feels' | 'humidity' | 'pressure' | 'pop' | 'visibility'
   title: string
   info: string | JSX.Element
   description: string
