@@ -37,7 +37,7 @@ const useForecast = () => {
                     list: data.list.slice(0, 16),
                 }
                 setForecast(forecastData)
-            })
+            }).catch(e => console.log(e))
     }
     const onSubmit = () => {
         if (!city) return
