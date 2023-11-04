@@ -1,4 +1,7 @@
+import { getSunTime } from '../helpers'
 import { forecastType } from '../types'
+import Sunrise from './Icons/Sunrise'
+import Sunset from './Icons/Sunset'
 
 type Props = {
   data: forecastType
@@ -27,21 +30,38 @@ const Forecast = ({ data }: Props): JSX.Element => {
             <Degree temp={Math.floor(today.main.temp_min)} />
           </p>
         </section>
-        <section>
+        <section className="flex overflow-x-scroll mt-4 pb-2 mb-5">
           {data.list.map((item, i) => (
             <div
               key={i}
               className="inline-block text-center w-[50px] flex-shrink-0"
             >
-              <p>
-                {item.dt}
+              <p className="text-small">
+                {i === 0 ? 'Now' : new Date(item.dt * 1000).getHours()}
                 <img
                   alt={`weather-icon-${item.weather[0].description}`}
                   src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                 />
               </p>
+              <p className="text-small font-bold">
+                <Degree temp={Math.round(item.main.temp)} />
+              </p>
             </div>
           ))}
+        </section>
+        <section className="flex flex-wrap justify-between text-zinc-700">
+          <div className="w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-ls rounded drop-shadow-lg py-4 mb-5">
+            <Sunrise /> <span className="mt-2">{getSunTime(data.sunrise)}</span>
+          </div>
+          <div className="w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-ls rounded drop-shadow-lg py-4 mb-5">
+            <Sunset /> <span className="mt-2">{getSunTime(data.sunset)}</span>
+          </div>
+          {/* wind */}
+          {/* feels like */}
+          {/* humidity */}
+          {/* pop */}
+          {/* pressure */}
+          {/* visibility */}
         </section>
       </div>
     </div>
